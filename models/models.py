@@ -85,9 +85,6 @@ def upsampling(input, w = -1, h = -1, factor=upsampling_factor):
             tf.image.resize_bilinear(tf.transpose(x, [0, 2, 3, 1]),
                                      (x.get_shape()[2] * factor, x.get_shape()[3] * factor),
                                      align_corners=True), [0, 3, 1, 2]))(input)
-    # return Lambda(lambda x: tf.transpose(
-    #     tf.image.resize_bicubic(tf.transpose(x, [0, 2, 3, 1]), (480, 640),align_corners=True), [0, 3, 1, 2]))(input)
-
 
 def upsampling_input(input, factor=upsampling_factor):
     return Lambda(lambda x: tf.transpose(
@@ -105,7 +102,6 @@ def msdensenet(x):
         layer.name = layer.name + str("_2")
     updcndown = upsampling(dcndown.output, factor=2.0)
 
-    # x = add([updcndown, dcn.output])
     x = keras.layers.concatenate([updcndown, dcn.output], axis=1)
     x = Conv2D(32, (5, 5), padding='same', activation='relu', dilation_rate=(4, 4))(x)
     x = Conv2D(64, (7, 7), padding='same', activation='relu', dilation_rate=(8, 8))(x)

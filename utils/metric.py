@@ -225,13 +225,6 @@ def cc(gt, s_map):
     return r
 
 
-# def kldiv(gt, s_map):
-#     s_map = s_map/np.max(s_map)
-#     s_map = s_map / (np.sum(s_map) * 1.0)
-#     gt = gt / (np.sum(gt) * 1.0)
-#     eps = 2.2204e-16
-#     return np.sum(gt * np.log(eps + gt / (s_map + eps)))
-
 def kldiv(gt, s_map):
     s_map = s_map / (np.sum(s_map) * 1.0)
     gt = gt / (np.sum(gt) * 1.0)

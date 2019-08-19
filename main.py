@@ -175,10 +175,7 @@ if __name__ == '__main__':
             sum_kl = 0
             h = 0
             for j, (train_idx, val_idx) in enumerate(folds):
-                if j <= 4:
-                    continue
                 m = create_model()
-                # m.summary()
                 print("Fold: ", j)
 
 
