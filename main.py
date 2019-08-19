@@ -149,7 +149,6 @@ if __name__ == '__main__':
     if len(sys.argv) == 1:
         raise NotImplementedError
     else:
-        # generator(1)
         print("Version 1.2")
         K.set_image_data_format("channels_first")
         phase = sys.argv[1]
@@ -158,10 +157,9 @@ if __name__ == '__main__':
         x2 = Input((3, shape_r / 4, shape_c / 4))
         x_maps = Input((nb_gaussian, shape_r_gt, shape_c_gt))
 
-        # m = create_model()
         m = 0
         if phase == 'train':
-            path = "weight/cv/" + net + "/run_salicon"
+            path = "weight/cv/" + net
             try:
                 weight = sys.argv[2]
             except:
@@ -231,7 +229,7 @@ if __name__ == '__main__':
                 cv2.imwrite(output_folder + '%s' % name, res.astype(int))
         elif phase == 'foldcal':
             folds, X_train, Y_train = load_data()
-            path = "weight/cv/" + net + "/run_salicon/result"
+            path = "weight/cv/" + net + "/result"
             f = open('doc/'+net+'_salicon10f.csv', 'a')
             sum_aucjud = 0
             sum_sim = 0
@@ -243,7 +241,7 @@ if __name__ == '__main__':
             sum_kl = 0
             m = create_model()
             m.compile(RMSprop(lr=1e-4), loss=[kl_divergence, correlation_coefficient, nss])
-            smap = cv2.imread("data/shuffle_salicon.jpg", 0)
+            smap = cv2.imread("data/shuffle_map.png", 0)
             smap = cv2.resize(smap, (640, 480))
 
             for j, (train_idx, val_idx) in enumerate(folds):
@@ -253,8 +251,6 @@ if __name__ == '__main__':
                 y_train_cv = [Y_train[i] for i in train_idx]
                 X_valid_cv = [X_train[i] for i in val_idx]
                 y_valid_cv = [Y_train[i] for i in val_idx]
-                # print("Number of train image ", len(X_train_cv))
-                # print("Number of validation image ", len(X_valid_cv))
                 nb_val = len(X_valid_cv)
                 lastest_file = glob.glob(path + '/weights.' + net + 'f' + str(j) + '*.*')
                 if not lastest_file:
