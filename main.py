@@ -129,11 +129,6 @@ def traning_process(path, model, batch_gen_train, nb_train, batch_gen_val, nb_va
     else:
         initepoch = 0
 
-    def writelogfile():
-        original = sys.stdout
-        sys.stdout = open('a.txt', 'a+')
-        print(m.get_layer("self_attention_1").get_weights()[6])
-        sys.stdout = original
 
     model.fit_generator(batch_gen_train, nb_train,
                         initial_epoch=initepoch,
@@ -157,6 +152,7 @@ if __name__ == '__main__':
         x2 = Input((3, shape_r / 4, shape_c / 4))
         x_maps = Input((nb_gaussian, shape_r_gt, shape_c_gt))
 
+        net =
         m = 0
         if phase == 'train':
             path = "weight/cv/" + net
@@ -188,13 +184,6 @@ if __name__ == '__main__':
                 y_valid_cv = [Y_train[i] for i in val_idx]
                 print("Number of train image ", len(X_train_cv))
                 print("Number of validation image ", len(X_valid_cv))
-                def writelogfile():
-                    original = sys.stdout
-                    sys.stdout = open('weight_'+net+'/weight_att_'+str(j)+'.txt', 'a+')
-                    print(m.get_layer("self_attention_1".get_weights()[6]))
-                    sys.stdout = original
-                print_weights = LambdaCallback(on_epoch_end=lambda epoch, logs: writelogfile())
-
                 traning_process(path, m, batch_generator(X_train_cv, y_train_cv), len(X_train_cv),
                                 batch_generator(X_valid_cv, y_valid_cv), len(X_valid_cv), j, weight=weight)
                 weight=None
@@ -215,10 +204,10 @@ if __name__ == '__main__':
 
 
             print("Loading weights")
-            lastest_file = glob.glob('weight/fn/' + net + '/*.*')
-            print(lastest_file)
-            m.load_weights(lastest_file[0])
+            weight_path = sys.argv[2]
+            m.load_weights(weight_path)
 
+            imgs_test_path = sys.argv[3]
             print("Predicting saliency maps for " + imgs_test_path)
             predictions = m.predict_generator(generator_test(b_s=b_s, imgs_test_path=imgs_test_path), nb_imgs_test)[0]
 
