@@ -43,7 +43,7 @@ Pre-trained weight by training the Eyecrowd dataset.
 ## Citation
 ```
 @article{tri2019incrowd,
-  title={Saliency Map Extraction in Human Crowd RGB Data},
+  title={Saliency detection in human crowd images of different density levels using attention mechanism},
   author={Tri, Nguyen Minh and Prarinya, Siritanawan and Kotani, Kazunori},
   year={2019}
 }
