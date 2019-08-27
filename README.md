@@ -21,7 +21,7 @@ Change the "net" parameter in utils/configs.py
 
 ## Pre-trained weight
 
-Pre-trained weight is training the whole Eyecrowd dataset.
+Pre-trained weight by training the whole Eyecrowd dataset.
 
 [MSDensenet-DAt](https://drive.google.com/open?id=1lLCpbs4ZS4OwsR4wlvEaYS2Z7qeOnTfI)
 
