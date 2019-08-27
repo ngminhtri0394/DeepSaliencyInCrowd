@@ -39,3 +39,12 @@ Pre-trained weight by training the Eyecrowd dataset.
 [Dense-D](https://drive.google.com/open?id=1KOBSyWctw9Lhyay90sKbgy0rGvggDlsl)
 
 [Dense](https://drive.google.com/open?id=1BATVlsl-eOWhPedGEghU9_BY9M0WcRkm)
+
+## Citation
+```
+@article{tri2019incrowd,
+  title={Saliency Map Extraction in Human Crowd RGB Data},
+  author={Tri, Nguyen Minh and Prarinya, Siritanawan and Kotani, Kazunori},
+  year={2019}
+}
+```
