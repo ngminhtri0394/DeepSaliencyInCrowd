@@ -209,9 +209,8 @@ if __name__ == '__main__':
             print("Predicting saliency maps for " + path_test)
             predictions = m.predict_generator(generator_test(b_s=b_s, imgs_test_path=path_test), nb_imgs_test)[0]
 
-
             for pred, name in zip(predictions, file_names):
-                original_image = cv2.imread(imgs_test_path + name, 0)
+                original_image = cv2.imread(path_test + name, 0)
                 res = postprocess_predictions(pred[0], original_image.shape[0], original_image.shape[1])
                 cv2.imwrite(output_folder + '%s' % name, res.astype(int))
         elif phase == 'foldcal':
