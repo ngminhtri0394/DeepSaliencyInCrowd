@@ -152,7 +152,6 @@ if __name__ == '__main__':
         x2 = Input((3, shape_r / 4, shape_c / 4))
         x_maps = Input((nb_gaussian, shape_r_gt, shape_c_gt))
 
-        net =
         m = 0
         if phase == 'train':
             path = "weight/cv/" + net
@@ -193,8 +192,8 @@ if __name__ == '__main__':
             output_folder = "pred/" + net + '/'
             if not os.path.exists(output_folder):
                 os.makedirs(output_folder)
-
-            file_names = [f for f in os.listdir(imgs_test_path) if f.endswith(('.jpg', '.jpeg', '.png'))]
+            path_test = sys.argv[3]
+            file_names = [f for f in os.listdir(path_test) if f.endswith(('.jpg', '.jpeg', '.png'))]
             file_names.sort()
             nb_imgs_test = len(file_names)
             m = create_model()
@@ -207,9 +206,8 @@ if __name__ == '__main__':
             weight_path = sys.argv[2]
             m.load_weights(weight_path)
 
-            imgs_test_path = sys.argv[3]
-            print("Predicting saliency maps for " + imgs_test_path)
-            predictions = m.predict_generator(generator_test(b_s=b_s, imgs_test_path=imgs_test_path), nb_imgs_test)[0]
+            print("Predicting saliency maps for " + path_test)
+            predictions = m.predict_generator(generator_test(b_s=b_s, imgs_test_path=path_test), nb_imgs_test)[0]
 
 
             for pred, name in zip(predictions, file_names):
