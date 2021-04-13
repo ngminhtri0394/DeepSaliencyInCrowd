@@ -1,6 +1,6 @@
 # Saliency detection in human crowd images of different density levels using attention mechanism
 
-The process using computer vision techniques to imitate the human visual system, predicting which areas on an image may attract human attention, is known as "saliency prediction". Saliency prediction in human crowd has important applications in human-computer interaction, security, multimedia. In this work, we proposed Multiscale DenseNet – Dilated and Attention (MSDense-DAt), a convolutional network for saliency prediction in crowd RGB data. Our method combines various state-of-the-art deep learning architectures  to deal with a crowd scene with varying object sizes, and complex composition of objects in human crowd image, such as multiscale DenseNet for multiscale deep features extraction, self-attention to imitate short-term knowledge driven gaze of human visual system, and dilated convolution. The overall performance is evaluated in human crowd image. Then the approach is evaluated in different crowd density levels to appraise the effect of crowd density on model performance. The result reveals that our approach overperforms previous saliency in crowd models. The self-attention mechanism can further enhance saliency model in high density crowd level.
+The human visual system has the ability to rapidly identify and redirect attention to important visual information in high complexity scenes such as the human crowd. Saliency prediction in the human crowd scene is the process using computer vision techniques to imitate the human visual system, predicting which areas in a human crowd scene may attract human attention. However, it is a challenging task to identify which factors may attract human attention due to the high complexity of the human crowd scene. In this work, we propose Multiscale DenseNet — Dilated and Attention (MSDense-DAt), a convolutional neural network (CNN) using self-attention to integrate the result of knowledge-driven gaze in the human visual system to identify salient areas in the human crowd scene. Our method combines various state-of-the-art deep learning architectures to deal with the high complexity in human crowd image, such as multiscale DenseNet for multiscale deep features extraction, self-attention, and dilated convolution. Then the effectiveness of each component in our CNN architecture is evaluated by comparing different components combinations. Finally, the proposed method is further evaluated in different crowd density levels to appraise the effect of crowd density on model performance.
 
 ## Usage
 Environment:
@@ -42,9 +42,13 @@ Pre-trained weight by training the Eyecrowd dataset.
 
 ## Citation
 ```
-@article{tri2019incrowd,
+@article{nguyen2020saliency,
   title={Saliency detection in human crowd images of different density levels using attention mechanism},
-  author={Tri, Nguyen Minh and Prarinya, Siritanawan and Kotani, Kazunori},
-  year={2019}
+  author={Nguyen, Minh Tri and Siritanawan, Prarinya and Kotani, Kazunori},
+  journal={Signal Processing: Image Communication},
+  volume={88},
+  pages={115976},
+  year={2020},
+  publisher={Elsevier}
 }
 ```
